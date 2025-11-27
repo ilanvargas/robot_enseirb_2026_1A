@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\title{Maths pour localiser un ArUco}
+\author{Ayman AIT HADDOU }
+
+\begin{document}
+\maketitle
+\section{Explications}
+On considère un tag ArUco carré $(ABDC)$ comme dans l'illustration ci dessous. \\
+On a la caméra en $P$ qui capture une image du tag.\\
+À l'aide de opencv, on retrouve les vecteurs $\vec{A_c}$, $\vec{B_c}$, $\vec{C_c}$ et $\vec{D_c}$.\\
+Où si l'on pose $\mathcal{P}$ le plan orthogonal à la direction de la caméra du coté de la direction de la caméra et à distance 1 de $P$, $\vec{X_c}$ est le vecteur de $P$ au point de $(XP) \cap \mathcal{P}$.\\
+On cherche dans un premier temps $\vec u$ un vecteur directeur de $(A,P,B) \cap (C,P,D)$ qui est collinéaire à $\vec AB$ et à $\vec AC$.\\
+On va ensuite chercher le vecteur $\vec{u}_{AB}$ (resp. $\vec{u}_{CD}$) colinéaire à $\vec{AB}$ (resp. $\vec{CD}$) entre $P + \vec{A}_c$ à un point de $(PB)$ (resp. entre $P + \vec{C}_c$ à un point de $(PD)$)\\
+Ensuite comme on connait la vraie longueur des côtés du carré $(ABDC)$ en comparant $||\vec{u}_{AB}||$ (resp. $||\vec{u}_{CD}||$) on peut rerouver le facteur par lequel multiplier pour trouver $\vec{PA}$ (resp. $\vec{PC}$) à partir de $\vec{A}_c$ (resp. $\vec{C}_c$) et $\vec{AB}$ (resp. $\vec{CD}$) à partir de $\vec{u}_{AB}$ (resp. $\vec{u}_{CD}$)\\
+\includegraphics[scale=0.25]{illustration.png}
+
+
+\section{Recherche de $\vec{u}$}
+Soit $\vec u$ un vecteur directeur de $(A,P,B) \cap (C,P,D)$.
+On pose $\vec{n_1} = \vec{A_c} \wedge \vec{B_c}$ normal à $(A,P,B)$ et $\vec{n_2} = \vec{C_c} \wedge \vec{D_c}$ normal à $(C,P,D)$.\\
+On prend alors $\vec u = \vec{n}_1 \wedge \vec{n}_2$
+
+\section{Calcul de $\vec{u}_{AB}$}
+On raisonne uniquement sur le points et les vecteurs du plan $(APB)$ on raisonnera de même pour $C$ et $D$.\\
+\\Dans le plan vectoriel parrallèle à $(APB)$ (sa direction), on cherche $\vec{u}_{AB}$ le projeté de $\vec{B_c}-\vec{A_c}$ sur $Vect(\vec u)$ parallèlement à $Vect(\vec{B_c})$. (regarder l'illustration pour comprendre le sens géometrique)\\
+\\
+On pose avec $\alpha, \beta \in \mathbb{R}$.
+$$
+\vec{A}_c = \alpha \vec{u} + \beta \vec{B}_c
+$$
+On a 
+$$
+\left\lbrace\begin{matrix}
+\alpha \vec u \cdot \vec u &+ \beta \alpha \vec{B}_c \cdot \vec u &= \vec{A}_c \cdot \vec u \\
+\alpha \vec u \cdot \vec{B}_c &+ \beta \alpha \vec{B}_c \cdot \vec{B}_c &= \vec{A}_c \cdot \vec{B}_c
+\end{matrix}\right.
+$$
+On pose alors
+$$
+\begin{matrix}
+a = \vec u \cdot \vec u & d = \vec{A}_c \cdot \vec u \\
+b = \vec u \cdot \vec{B}_c & e = \vec{A}_c \cdot \vec{B}_c \\
+c = \vec{B}_c \cdot \vec{B}_c &\\
+\end{matrix}
+$$
+on a
+$$
+\begin{pmatrix}
+\alpha \\ \beta
+\end{pmatrix} = \begin{pmatrix}
+a & b \\
+b & c
+\end{pmatrix}^{-1} \begin{pmatrix}
+e \\ f
+\end{pmatrix}
+$$
+et enfin 
+$$
+\vec{u}_{AB} = \alpha \vec u
+$$
+
+
+\section{Comparaison de $\vec{u}_{AB}$ à $\vec{AB}$ ce qui donne $\vec{PA}$}
+On remarque
+$$
+AB\vec{A}_c = ||\vec{u}_{AB}||\vec{PA}
+$$
+On a enfin
+\begin{align*}
+\vec{PA} = \frac{AB}{||\vec{u}_{AB}||}\vec{A}_c \\
+\vec{PB} = \frac{AB}{||\vec{u}_{AB}||}(\vec{A}_c + \vec{u}_{AB})
+\end{align*}
+De même on peut trouver $\vec{PC}$ et $\vec{PD}$.
+\end{document}
