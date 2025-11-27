@@ -69,3 +69,4 @@
 (B[m[38;5;234m[48;5;247mcomp_global.py                                                1,1            All(B[m[38;5;250m[48;5;234m
                                                                                 [1;5H[?12h[?25h# robot_enseirb_2026_1A
 # robot_enseirb_2026_1A
+# robot_enseirb_2026_1A
