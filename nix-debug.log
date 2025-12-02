@@ -1,0 +1,4 @@
+evaluating file '<nix/derivation-internal.nix>'
+did not find cache entry for '{"name":"source","type":"tarball","url":"https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz"}'
+acquiring write lock on '/net/netud/e/aaithaddou/.nix-portable/nix/var/nix/temproots/110192'
+using cache entry '{"name":"source","type":"file","url":"https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz"}' -> '{"etag":"W/\"cf2698f68035449fc3d546e8ccd21e4cde4f2d0098d0ab3e7c351f940e2ba0bb\"","url":"https://codeload.github.com/NixOS/nixpkgs/tar.gz/refs/heads/nixpkgs-unstable"}', '/nix/store/b51rsks5jfgx8mcr291rnayr5982qlpg-source'

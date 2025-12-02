@@ -15,6 +15,7 @@ def comand_steper(instruction : str, amplitude : int):
     "left backward" : (2, 0)
   }
   # TODO : transmettre la commande au stepper
+
   pass
 
 
@@ -30,7 +31,6 @@ class Robot:
   delta_l = 2*math.pi*tire_radius / nb_micro_step
 
   def __init__(self):
-    self.mouvement_queue = []
     self.theta = Robot.default_theta
     self.set_team()
     if self.team == "blue":
@@ -49,6 +49,13 @@ class Robot:
     # TODO :
     #  - trouver le chemin
     #  - avanver petit à petit avec retro-action
+
+    pass
+  
+  def take_nuts(self):
+    pass
+  
+  def release(self):
     pass
 
 
