@@ -4,7 +4,7 @@ let
   # Import de nixvim
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
-    ref = "nixos-24.11";
+    ref = "nixos-25.05";
   });
   
   # Votre configuration nixvim

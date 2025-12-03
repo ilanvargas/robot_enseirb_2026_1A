@@ -7,6 +7,7 @@ pkgs.mkShell {
     pkgs.python313Packages.numpy
     pkgs.python313Packages.pyserial
     pkgs.arduino-cli
+    pkgs.neovim
     (import ./neovim-standalone.nix { inherit pkgs; })
   ];
 }
