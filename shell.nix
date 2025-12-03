@@ -6,7 +6,8 @@ pkgs.mkShell {
     pkgs.python313Packages.opencv4
     pkgs.python313Packages.numpy
     pkgs.python313Packages.pyserial
-    pkgs.neovim
+    pkgs.arduino-cli
+    (import ./neovim-standalone.nix { inherit pkgs; })
   ];
 }
 
