@@ -1,6 +1,0 @@
-Packages are managed using nix
-    Portable nix is possible but true install would be better
-
-You should be able to read/write USB port
-Nix will download files so it needs some space
-
